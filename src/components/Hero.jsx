@@ -41,7 +41,7 @@ export default function Hero() {
     composer.addPass(new RenderPass(scene, camera));
     if (!isMobile) {
       const bloomPass = new UnrealBloomPass(
-        new THREE.Vector2(window.innerWidth, window.innerHeight),
+        new THREE.Vector2(Math.floor(window.innerWidth / 2), Math.floor(window.innerHeight / 2)),
         0.5, 0.4, 0.85
       );
       composer.addPass(bloomPass);
@@ -94,14 +94,24 @@ export default function Hero() {
     torusMesh.position.set(0, 0, -20);
     scene.add(torusMesh);
 
-    // Mouse tracking
+    // Pre-compile scene shaders to eliminate first-frame GPU compilation lag
+    renderer.compile(scene, camera);
+
+    // Initial warm-up render to prime the GPU buffer before animation loop starts
+    if (isMobile) {
+      renderer.render(scene, camera);
+    } else {
+      composer.render();
+    }
+
+    // Mouse tracking (passive for smooth 60fps)
     let mouseX = 0;
     let mouseY = 0;
     const handleMouseMove = (e) => {
       mouseX = (e.clientX / window.innerWidth - 0.5) * 20;
       mouseY = (e.clientY / window.innerHeight - 0.5) * 20;
     };
-    if (!isMobile) window.addEventListener('mousemove', handleMouseMove);
+    if (!isMobile) window.addEventListener('mousemove', handleMouseMove, { passive: true });
 
     // IntersectionObserver to pause WebGL frame loop when scrolled past Hero
     let isVisible = true;
@@ -160,7 +170,7 @@ export default function Hero() {
     return () => {
       cancelAnimationFrame(animationId);
       observer.disconnect();
-      window.removeEventListener('mousemove', handleMouseMove);
+      if (!isMobile) window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('resize', handleResize);
       geometry.dispose();
       material.dispose();
@@ -172,7 +182,7 @@ export default function Hero() {
 
   return (
     <section ref={containerRef} className="relative min-h-screen flex items-center justify-center pt-24 pb-16 overflow-hidden bg-[#090c12]" id="home">
-      <canvas ref={canvasRef} className="absolute inset-0 pointer-events-none z-0" />
+      <canvas ref={canvasRef} className="absolute inset-0 pointer-events-none z-0" style={{ transform: 'translate3d(0, 0, 0)' }} />
 
       <div className="container relative z-10 text-center px-4 max-w-4xl mx-auto flex flex-col items-center">
         <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20 mb-6">

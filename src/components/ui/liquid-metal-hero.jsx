@@ -106,7 +106,17 @@ function About3DBackgroundCanvas() {
     innerMesh.position.set(0, 0, -10);
     scene.add(innerMesh);
 
-    // Mouse Tracking
+    // Pre-compile scene shaders to eliminate first-frame GPU compilation lag
+    renderer.compile(scene, camera);
+
+    // Initial warm-up render
+    if (isMobile) {
+      renderer.render(scene, camera);
+    } else {
+      composer.render();
+    }
+
+    // Mouse Tracking (passive for smooth 60fps)
     let mouseX = 0;
     let mouseY = 0;
     const handleMouseMove = (e) => {
@@ -114,7 +124,7 @@ function About3DBackgroundCanvas() {
       mouseX = ((e.clientX - rect.left) / rect.width - 0.5) * 15;
       mouseY = ((e.clientY - rect.top) / rect.height - 0.5) * 15;
     };
-    if (!isMobile) window.addEventListener('mousemove', handleMouseMove);
+    if (!isMobile) window.addEventListener('mousemove', handleMouseMove, { passive: true });
 
     // IntersectionObserver to pause rendering when scrolled past About Hero
     let isVisible = true;
