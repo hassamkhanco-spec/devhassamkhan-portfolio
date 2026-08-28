@@ -41,7 +41,7 @@ const pillars = [
     title: 'Zero Layout Shift', subtitle: 'Multi-Device Fluid UX',
     description: 'Fluid responsive layouts with zero CLS across all viewports — mobile, tablet, laptop, and ultrawide monitors.',
     icon: Smartphone, accentColor: '#60A5FA',
-    dotLottieUrl: 'https://lottie.host/e8bf9fdf-7003-40d2-907b-14feb5350d16/mISmi5zLPv.lottie',
+    dotLottieUrl: 'https://lottie.host/3015dc3c-0ec0-48be-989a-d21606aa9d40/ML9hhdcwy5.json',
   },
   {
     id: 'updates', number: '04',
@@ -54,14 +54,14 @@ const pillars = [
     title: 'Clean & Scalable Code', subtitle: 'Future-Proof Architecture',
     description: 'Maintainable class structures, CMS-ready collections, and modular design patterns built to scale with your business.',
     icon: ShieldCheck, accentColor: '#60A5FA',
-    dotLottieUrl: 'https://lottie.host/9729e54c-ea2f-427f-a88d-ab5ce602027c/8PFuS4dCRZ.lottie',
+    dotLottieUrl: 'https://lottie.host/f2f033de-4156-425c-a637-4c6502bf8da0/p8IdU11EAV.json',
   },
   {
     id: 'support', number: '06',
     title: 'Free Post-Launch Support', subtitle: '7-Day Bug Fix Guarantee',
     description: '7 days of complimentary post-launch bug fixes, browser testing, and performance monitoring included on every project.',
     icon: HeartHandshake, accentColor: '#60A5FA',
-    dotLottieUrl: 'https://lottie.host/3b2aadd1-ef07-4ea9-a4b5-8698c3e2f05a/SnELwtWWrL.lottie',
+    dotLottieUrl: 'https://lottie.host/6f92903e-3c57-47dd-94e9-89d97f874d8d/Uer9pTXaUd.json',
   },
 ];
 

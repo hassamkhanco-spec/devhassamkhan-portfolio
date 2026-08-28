@@ -3,6 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import Lottie from 'lottie-react';
 import dailyUpdatesData from '../assets/daily_updates.json';
+import whatsappData from '../assets/whatsapp.json';
+import locationData from '../assets/location.json';
 import { 
   Mail, 
   Phone, 
@@ -392,8 +394,8 @@ export default function ContactSection() {
                   <div className="flex items-center gap-3.5 min-w-0">
                     <AnimatedContactBadge
                       icon={MessageSquare}
-                      accentColor="#38BDF8"
-                      dotLottieUrl="https://lottie.host/1f2856ed-4213-48b9-adec-7ee2258bdb49/GMaSiq2I3R.lottie"
+                      accentColor="#22C55E"
+                      lottieData={whatsappData}
                     />
                     <div className="flex flex-col min-w-0">
                       <span className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">WhatsApp / Call</span>
@@ -448,8 +450,8 @@ export default function ContactSection() {
                 <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/10 flex items-center gap-3.5">
                   <AnimatedContactBadge
                     icon={MapPin}
-                    accentColor="#818CF8"
-                    dotLottieUrl="https://lottie.host/ad6a64bc-0e31-46c9-83e7-e7a9958537a2/Vl3zj89utE.lottie"
+                    accentColor="#60A5FA"
+                    lottieData={locationData}
                   />
                   <div className="flex flex-col">
                     <span className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Location & Availability</span>
