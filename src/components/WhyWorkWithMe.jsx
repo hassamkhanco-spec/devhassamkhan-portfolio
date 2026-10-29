@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, useSpring } from 'motion/react';
 import { Gauge, Target, Smartphone, MessageSquareMore, ShieldCheck, HeartHandshake } from 'lucide-react';
 import Lottie from 'lottie-react';
-import { DotLottieReact } from '@lottiefiles/dotlottie-react';
+import { DotLottieReact } from '@lottiefiles/dotlottie-react'; // kept for ContactSection shared usage
 import speedometerData from '../assets/speedometer.json';
 import pixelChatbotData from '../assets/pixel_chatbot.json';
 import responsiveData from '../assets/responsive.json';
@@ -40,8 +40,7 @@ const pillars = [
     id: 'responsive', number: '03',
     title: 'Zero Layout Shift', subtitle: 'Multi-Device Fluid UX',
     description: 'Fluid responsive layouts with zero CLS across all viewports — mobile, tablet, laptop, and ultrawide monitors.',
-    icon: Smartphone, accentColor: '#60A5FA',
-    dotLottieUrl: 'https://lottie.host/3015dc3c-0ec0-48be-989a-d21606aa9d40/ML9hhdcwy5.json',
+    icon: Smartphone, accentColor: '#60A5FA', lottieData: responsiveData,
   },
   {
     id: 'updates', number: '04',
@@ -53,15 +52,13 @@ const pillars = [
     id: 'clean', number: '05',
     title: 'Clean & Scalable Code', subtitle: 'Future-Proof Architecture',
     description: 'Maintainable class structures, CMS-ready collections, and modular design patterns built to scale with your business.',
-    icon: ShieldCheck, accentColor: '#60A5FA',
-    dotLottieUrl: 'https://lottie.host/f2f033de-4156-425c-a637-4c6502bf8da0/p8IdU11EAV.json',
+    icon: ShieldCheck, accentColor: '#60A5FA', lottieData: cleanCodeData,
   },
   {
     id: 'support', number: '06',
     title: 'Free Post-Launch Support', subtitle: '7-Day Bug Fix Guarantee',
     description: '7 days of complimentary post-launch bug fixes, browser testing, and performance monitoring included on every project.',
-    icon: HeartHandshake, accentColor: '#60A5FA',
-    dotLottieUrl: 'https://lottie.host/6f92903e-3c57-47dd-94e9-89d97f874d8d/Uer9pTXaUd.json',
+    icon: HeartHandshake, accentColor: '#60A5FA', lottieData: supportData,
   },
 ];
 
@@ -102,16 +99,9 @@ function AnimatedIcon({ pillar }) {
         />
         <div className="absolute inset-[1px] bg-[#090c12]/88 rounded-[7px] sm:rounded-[11px]" />
         <div className="relative z-10 w-7 h-7 sm:w-10 sm:h-10 flex items-center justify-center pointer-events-none">
-          {pillar.dotLottieUrl ? (
-            <DotLottieReact
-              src={pillar.dotLottieUrl}
-              loop
-              autoplay
-              style={{ width: '100%', height: '100%' }}
-            />
-          ) : (
+          {pillar.lottieData ? (
             <Lottie animationData={pillar.lottieData} loop className="w-full h-full scale-125" />
-          )}
+          ) : null}
         </div>
       </div>
       <div
